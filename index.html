@@ -301,11 +301,15 @@
         <div class="card">
           <h2>About Me</h2>
           <p>
-            I'm a software developer with a passion for running. I built this
-            space to share things I enjoy - from quick games to terrible jokes.
-            This site is constantly evolving, so check back often for new
-            additions!
+            I'm a software developer with a passion for running. When I'm not
+            writing code, you'll probably find me out on a run or planning my
+            next race. I built this space to share things I enjoy - from quick
+            games to terrible jokes. This site is constantly evolving, so check
+            back often for new additions!
           </p>
+        </div>
+        <div class="card">
+          <p><em>"Erika: Motsatsen till positivet för fulast."</em></p>
         </div>
       </div>
 
@@ -313,8 +317,8 @@
       <div class="page" id="games">
         <h1 style="text-align: center; margin-bottom: 2rem">Mini Games</h1>
         <div class="game-grid">
-          <div class="game-card">
-            <h3>🎯 Coming Soon</h3>
+          <div class="game-card" onclick="showGame('guessNumber')">
+            <h3>🎯 Play Now</h3>
             <p>Guess the Number</p>
           </div>
           <div class="game-card">
@@ -324,6 +328,78 @@
           <div class="game-card">
             <h3>🎲 Coming Soon</h3>
             <p>Rock Paper Scissors</p>
+          </div>
+        </div>
+
+        <!-- Guess the Number Game -->
+        <div id="guessNumberGame" style="display: none; margin-top: 3rem">
+          <div class="card">
+            <button
+              onclick="hideGame()"
+              style="margin-bottom: 1rem; padding: 0.5rem 1rem"
+            >
+              ← Back to Games
+            </button>
+            <h2 style="text-align: center; margin-bottom: 1rem">
+              🎯 Guess the Number
+            </h2>
+            <p style="text-align: center; color: #b8b8b8; margin-bottom: 2rem">
+              I'm thinking of a number between 1 and 100. Can you guess it?
+            </p>
+
+            <div style="text-align: center">
+              <div style="margin-bottom: 1.5rem">
+                <div
+                  style="font-size: 1.2rem; color: #c0c0c0; margin-bottom: 1rem"
+                >
+                  Attempts: <span id="attempts">0</span>
+                </div>
+                <div
+                  id="gameMessage"
+                  style="
+                    font-size: 1.3rem;
+                    min-height: 2rem;
+                    color: #d0d0d0;
+                    margin-bottom: 1rem;
+                  "
+                ></div>
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  gap: 1rem;
+                  justify-content: center;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                "
+              >
+                <input
+                  type="number"
+                  id="guessInput"
+                  min="1"
+                  max="100"
+                  placeholder="Enter 1-100"
+                  style="max-width: 200px; text-align: center"
+                  onkeypress="if(event.key==='Enter') makeGuess()"
+                />
+                <button onclick="makeGuess()">Guess</button>
+              </div>
+
+              <button
+                onclick="resetGame()"
+                style="
+                  background: linear-gradient(135deg, #505050 0%, #707070 100%);
+                "
+              >
+                New Game
+              </button>
+
+              <div
+                id="guessList"
+                style="margin-top: 2rem; color: #a0a0a0"
+              ></div>
+            </div>
           </div>
         </div>
       </div>

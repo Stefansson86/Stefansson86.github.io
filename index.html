@@ -1,18 +1,484 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MStefansson</title>
-    <link rel="stylesheet" href="./style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #2a2a2a 0%, #3d3d3d 100%);
+        color: #e8e8e8;
+        min-height: 100vh;
+      }
+
+      nav {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #b0b0b0 0%, #d0d0d0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #d0d0d0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .nav-links a.active {
+        background: linear-gradient(135deg, #6a6a6a 0%, #8a8a8a 100%);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .page {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(
+          135deg,
+          rgba(160, 160, 160, 0.15) 0%,
+          rgba(180, 180, 180, 0.15) 100%
+        );
+        border-radius: 20px;
+        margin-bottom: 3rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #b8b8b8 0%, #d8d8d8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: #b8b8b8;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(160, 160, 160, 0.2);
+      }
+
+      .card h2 {
+        color: #c0c0c0;
+        margin-bottom: 1rem;
+      }
+
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .game-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .game-card:hover {
+        background: rgba(160, 160, 160, 0.15);
+        transform: scale(1.05);
+      }
+
+      .game-card h3 {
+        color: #b8b8b8;
+        margin-bottom: 0.5rem;
+      }
+
+      .joke-container {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .joke-text {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      button {
+        background: linear-gradient(135deg, #707070 0%, #909090 100%);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(112, 112, 112, 0.4);
+      }
+
+      .calculator-form {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      label {
+        color: #b8b8b8;
+        font-weight: 500;
+      }
+
+      input,
+      select {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.8rem;
+        color: #e8e8e8;
+        font-size: 1rem;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #909090;
+      }
+
+      .result {
+        background: linear-gradient(
+          135deg,
+          rgba(112, 112, 112, 0.2) 0%,
+          rgba(144, 144, 144, 0.2) 100%
+        );
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        text-align: center;
+      }
+
+      .result h3 {
+        color: #c0c0c0;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="poster">
-      <h1>Hi! I'm Mikael</h1>
-      <p>
-        Not really sure about what this will be, but at least this is a start.
-      </p>
+    <nav>
+      <div class="nav-container">
+        <div class="logo">MStefansson</div>
+        <ul class="nav-links">
+          <li>
+            <a href="#" class="nav-link active" data-page="about">About</a>
+          </li>
+          <li><a href="#" class="nav-link" data-page="games">Games</a></li>
+          <li><a href="#" class="nav-link" data-page="jokes">Dad Jokes</a></li>
+          <li>
+            <a href="#" class="nav-link" data-page="calculator">Run Calc</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- About Page -->
+      <div class="page active" id="about">
+        <div class="hero">
+          <h1>Hi! I'm Mikael</h1>
+          <p>
+            Welcome to my corner of the internet. Explore games, laugh at dad
+            jokes, or calculate your running pace.
+          </p>
+        </div>
+        <div class="card">
+          <h2>About Me</h2>
+          <p>
+            I'm a software developer with a passion for running. When I'm not
+            writing code, you'll probably find me out on a run or planning my
+            next race. I built this space to share things I enjoy - from quick
+            games to terrible jokes. This site is constantly evolving, so check
+            back often for new additions!
+          </p>
+        </div>
+        <div class="card">
+          <p><em>"Erika: Motsatsen till positivet för fulast."</em></p>
+        </div>
+      </div>
+
+      <!-- Games Page -->
+      <div class="page" id="games">
+        <h1 style="text-align: center; margin-bottom: 2rem">Mini Games</h1>
+        <div class="game-grid">
+          <div class="game-card">
+            <h3>🎯 Coming Soon</h3>
+            <p>Guess the Number</p>
+          </div>
+          <div class="game-card">
+            <h3>🎮 Coming Soon</h3>
+            <p>Memory Match</p>
+          </div>
+          <div class="game-card">
+            <h3>🎲 Coming Soon</h3>
+            <p>Rock Paper Scissors</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dad Jokes Page -->
+      <div class="page" id="jokes">
+        <h1 style="text-align: center; margin-bottom: 2rem">Dad Jokes</h1>
+        <div class="joke-container">
+          <div class="joke-text" id="jokeText">
+            Click the button for a dad joke!
+          </div>
+          <button onclick="getNewJoke()">Tell Me a Joke</button>
+        </div>
+      </div>
+
+      <!-- Running Calculator Page -->
+      <div class="page" id="calculator">
+        <h1 style="text-align: center; margin-bottom: 2rem">
+          Running Pace Calculator
+        </h1>
+        <div class="card">
+          <form class="calculator-form" onsubmit="calculatePace(event)">
+            <div class="form-group">
+              <label for="distance">Distance</label>
+              <input
+                type="number"
+                id="distance"
+                step="0.01"
+                required
+                placeholder="Enter distance"
+              />
+            </div>
+            <div class="form-group">
+              <label for="unit">Unit</label>
+              <select id="unit">
+                <option value="km">Kilometers</option>
+                <option value="mi">Miles</option>
+                <option value="m">Meters</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="hours">Hours</label>
+              <input type="number" id="hours" min="0" value="0" required />
+            </div>
+            <div class="form-group">
+              <label for="minutes">Minutes</label>
+              <input
+                type="number"
+                id="minutes"
+                min="0"
+                max="59"
+                required
+                placeholder="Minutes"
+              />
+            </div>
+            <div class="form-group">
+              <label for="seconds">Seconds</label>
+              <input
+                type="number"
+                id="seconds"
+                min="0"
+                max="59"
+                value="0"
+                required
+              />
+            </div>
+            <button type="submit">Calculate Pace</button>
+          </form>
+          <div id="result" style="display: none"></div>
+        </div>
+      </div>
     </div>
-    <div class="poster">
-      <p>Erika: Motsatsen till positivet för fulast.</p>
-    </div>
+
+    <script>
+      // Navigation
+      const navLinks = document.querySelectorAll(".nav-link");
+      const pages = document.querySelectorAll(".page");
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetPage = link.dataset.page;
+
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+
+          pages.forEach((page) => page.classList.remove("active"));
+          document.getElementById(targetPage).classList.add("active");
+        });
+      });
+
+      // Dad Jokes
+      const jokes = [
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "I'm reading a book about anti-gravity. It's impossible to put down!",
+        "Why did the scarecrow win an award? He was outstanding in his field!",
+        "What do you call a fake noodle? An impasta!",
+        "Why don't eggs tell jokes? They'd crack each other up!",
+        "What do you call a bear with no teeth? A gummy bear!",
+        "Why did the coffee file a police report? It got mugged!",
+        "How do you organize a space party? You planet!",
+        "What did the ocean say to the beach? Nothing, it just waved!",
+        "Why don't skeletons fight each other? They don't have the guts!",
+      ];
+
+      function getNewJoke() {
+        const jokeText = document.getElementById("jokeText");
+        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+        jokeText.textContent = randomJoke;
+      }
+
+      // Running Calculator
+      function calculatePace(event) {
+        event.preventDefault();
+
+        let distance = parseFloat(document.getElementById("distance").value);
+        const unit = document.getElementById("unit").value;
+        const hours = parseInt(document.getElementById("hours").value);
+        const minutes = parseInt(document.getElementById("minutes").value);
+        const seconds = parseInt(document.getElementById("seconds").value);
+
+        // Convert distance to kilometers
+        if (unit === "mi") {
+          distance = distance * 1.60934;
+        } else if (unit === "m") {
+          distance = distance / 1000;
+        }
+
+        // Convert time to total seconds
+        const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+        // Calculate pace (seconds per km)
+        const pacePerKm = totalSeconds / distance;
+        const paceMinutes = Math.floor(pacePerKm / 60);
+        const paceSeconds = Math.floor(pacePerKm % 60);
+
+        // Calculate speed (km/h)
+        const speed = (distance / totalSeconds) * 3600;
+
+        // Display result
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = `
+        <div class="result">
+          <h3>${paceMinutes}:${paceSeconds.toString().padStart(2, "0")} /km</h3>
+          <p style="color: #b8b8b8;">Average Speed: ${speed.toFixed(2)} km/h</p>
+          <p style="color: #b8b8b8;">Total Time: ${hours}h ${minutes}m ${seconds}s</p>
+          <p style="color: #b8b8b8;">Distance: ${distance.toFixed(2)} km</p>
+        </div>
+      `;
+        resultDiv.style.display = "block";
+      }
+    </script>
   </body>
 </html>

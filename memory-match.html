@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MStefansson - Memory Match</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="logo">MStefansson</div>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">About</a>
+          </li>
+          <li><a href="games.html" class="nav-link">Games</a></li>
+          <li><a href="jokes.html" class="nav-link">Dad Jokes</a></li>
+          <li>
+            <a href="calculator.html" class="nav-link">Run Calc</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="page">
+        <div class="game-container">
+          <div class="card">
+            <a href="games.html">
+              <button style="margin-bottom: 1rem; padding: 0.5rem 1rem">
+                ← Back to Games
+              </button>
+            </a>
+            <h2 class="game-header">🧠 Memory Match</h2>
+            <p style="text-align: center; color: #b8b8b8; margin-bottom: 2rem">
+              Find all matching pairs of cards!
+            </p>
+
+            <div class="difficulty-selector">
+              <button class="difficulty-btn active" onclick="setDifficulty('easy')">
+                Easy (4x4)
+              </button>
+              <button class="difficulty-btn" onclick="setDifficulty('medium')">
+                Medium (6x6)
+              </button>
+              <button class="difficulty-btn" onclick="setDifficulty('hard')">
+                Hard (8x8)
+              </button>
+            </div>
+
+            <div class="game-info">
+              <div class="info-item">
+                <div class="info-label">Moves</div>
+                <div class="info-value" id="moves">0</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Matches</div>
+                <div class="info-value"><span id="matches">0</span> / <span id="totalPairs">8</span></div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Best</div>
+                <div class="info-value" id="bestScore">--</div>
+              </div>
+            </div>
+
+            <div id="gameBoard" class="memory-grid easy"></div>
+
+            <div style="text-align: center; margin-top: 2rem">
+              <button onclick="resetGame()">New Game</button>
+            </div>
+
+            <div
+              id="winMessage"
+              style="
+                text-align: center;
+                font-size: 1.5rem;
+                margin-top: 2rem;
+                color: #88ff88;
+                min-height: 2rem;
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+      // Card symbols for the game
+      const SYMBOLS = ['🎮', '🎯', '🎲', '🎪', '🎨', '🎭', '🎸', '🎹', '🎺', '🎻', '🎬', '🎤', '🏀', '⚽', '🏈', '⚾', '🎾', '🏐', '🏓', '🏸', '🏒', '🏏', '⛳', '🎣', '🎿', '🏂', '🏄', '🏊', '🚴', '🏆', '🎖️', '🏅'];
+
+      let difficulty = 'easy';
+      let cards = [];
+      let flippedCards = [];
+      let matchedPairs = 0;
+      let moves = 0;
+      let isProcessing = false;
+      let bestScores = {
+        easy: localStorage.getItem('memoryBestEasy') || null,
+        medium: localStorage.getItem('memoryBestMedium') || null,
+        hard: localStorage.getItem('memoryBestHard') || null
+      };
+
+      function setDifficulty(level) {
+        difficulty = level;
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        resetGame();
+      }
+
+      function initGame() {
+        const gridSizes = { easy: 16, medium: 36, hard: 64 };
+        const pairCount = gridSizes[difficulty] / 2;
+
+        // Select random symbols
+        const selectedSymbols = SYMBOLS.slice(0, pairCount);
+        const cardPairs = [...selectedSymbols, ...selectedSymbols];
+
+        // Shuffle cards
+        cards = cardPairs.sort(() => Math.random() - 0.5);
+
+        // Reset game state
+        flippedCards = [];
+        matchedPairs = 0;
+        moves = 0;
+        isProcessing = false;
+
+        updateDisplay();
+        renderBoard();
+
+        // Update best score display
+        const bestScore = bestScores[difficulty];
+        document.getElementById('bestScore').textContent = bestScore || '--';
+      }
+
+      function renderBoard() {
+        const board = document.getElementById('gameBoard');
+        board.className = `memory-grid ${difficulty}`;
+        board.innerHTML = '';
+
+        cards.forEach((symbol, index) => {
+          const card = document.createElement('div');
+          card.className = 'memory-card';
+          card.dataset.index = index;
+          card.dataset.symbol = symbol;
+          card.addEventListener('click', flipCard);
+          board.appendChild(card);
+        });
+      }
+
+      function flipCard(e) {
+        if (isProcessing) return;
+
+        const card = e.currentTarget;
+        const index = parseInt(card.dataset.index);
+
+        // Prevent flipping already flipped or matched cards
+        if (card.classList.contains('flipped') || card.classList.contains('matched')) {
+          return;
+        }
+
+        // Flip the card
+        card.classList.add('flipped');
+        card.textContent = card.dataset.symbol;
+        flippedCards.push({ card, index, symbol: card.dataset.symbol });
+
+        // Check for match when two cards are flipped
+        if (flippedCards.length === 2) {
+          moves++;
+          updateDisplay();
+          checkMatch();
+        }
+      }
+
+      function checkMatch() {
+        isProcessing = true;
+        const [card1, card2] = flippedCards;
+
+        if (card1.symbol === card2.symbol) {
+          // Match found
+          setTimeout(() => {
+            card1.card.classList.add('matched');
+            card2.card.classList.add('matched');
+            matchedPairs++;
+            flippedCards = [];
+            isProcessing = false;
+            updateDisplay();
+            checkWin();
+          }, 500);
+        } else {
+          // No match
+          setTimeout(() => {
+            card1.card.classList.remove('flipped');
+            card2.card.classList.remove('flipped');
+            card1.card.textContent = '';
+            card2.card.textContent = '';
+            flippedCards = [];
+            isProcessing = false;
+          }, 1000);
+        }
+      }
+
+      function checkWin() {
+        const totalPairs = cards.length / 2;
+        if (matchedPairs === totalPairs) {
+          const message = document.getElementById('winMessage');
+          message.textContent = `🎉 You won in ${moves} moves!`;
+
+          // Check and update best score
+          const bestScore = bestScores[difficulty];
+          if (!bestScore || moves < parseInt(bestScore)) {
+            bestScores[difficulty] = moves;
+            localStorage.setItem(`memoryBest${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`, moves);
+            document.getElementById('bestScore').textContent = moves;
+            message.textContent += ' 🏆 New best score!';
+          }
+        }
+      }
+
+      function updateDisplay() {
+        document.getElementById('moves').textContent = moves;
+        document.getElementById('matches').textContent = matchedPairs;
+        document.getElementById('totalPairs').textContent = cards.length / 2;
+      }
+
+      function resetGame() {
+        document.getElementById('winMessage').textContent = '';
+        initGame();
+      }
+
+      // Start game on load
+      initGame();
+    </script>
+  </body>
+</html>

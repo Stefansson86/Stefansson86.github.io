@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MStefansson - Guess the Number</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="logo">MStefansson</div>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">About</a>
+          </li>
+          <li><a href="games.html" class="nav-link">Games</a></li>
+          <li><a href="jokes.html" class="nav-link">Dad Jokes</a></li>
+          <li>
+            <a href="calculator.html" class="nav-link">Run Calc</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="page">
+        <div class="game-container">
+          <div class="card">
+            <a href="games.html">
+              <button style="margin-bottom: 1rem; padding: 0.5rem 1rem">
+                ← Back to Games
+              </button>
+            </a>
+            <h2 class="game-header">🎯 Guess the Number</h2>
+            <p style="text-align: center; color: #b8b8b8; margin-bottom: 2rem">
+              I'm thinking of a number between 1 and 100. Can you guess it?
+            </p>
+
+            <div style="text-align: center">
+              <div class="game-info">
+                <div class="info-item">
+                  <div class="info-label">Attempts</div>
+                  <div class="info-value" id="attempts">0</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Best Score</div>
+                  <div class="info-value" id="bestScore">--</div>
+                </div>
+              </div>
+
+              <div
+                id="gameMessage"
+                style="
+                  font-size: 1.3rem;
+                  min-height: 2rem;
+                  color: #d0d0d0;
+                  margin-bottom: 1rem;
+                "
+              >
+                Make your first guess!
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  gap: 1rem;
+                  justify-content: center;
+                  align-items: center;
+                  margin-bottom: 1rem;
+                  flex-wrap: wrap;
+                "
+              >
+                <input
+                  type="number"
+                  id="guessInput"
+                  min="1"
+                  max="100"
+                  placeholder="Enter 1-100"
+                  style="max-width: 200px; text-align: center"
+                />
+                <button onclick="makeGuess()">Guess</button>
+              </div>
+
+              <button
+                onclick="resetGame()"
+                style="
+                  background: linear-gradient(135deg, #505050 0%, #707070 100%);
+                "
+              >
+                New Game
+              </button>
+
+              <div id="guessList" style="margin-top: 2rem; color: #a0a0a0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+      let targetNumber;
+      let attempts;
+      let guesses;
+      let bestScore = localStorage.getItem('guessNumberBest') || null;
+
+      // Initialize game
+      function initGame() {
+        targetNumber = Math.floor(Math.random() * 100) + 1;
+        attempts = 0;
+        guesses = [];
+        updateDisplay();
+        document.getElementById('guessInput').value = '';
+        document.getElementById('gameMessage').textContent = 'Make your first guess!';
+        document.getElementById('guessList').innerHTML = '';
+
+        // Display best score
+        if (bestScore) {
+          document.getElementById('bestScore').textContent = bestScore;
+        }
+      }
+
+      function makeGuess() {
+        const input = document.getElementById('guessInput');
+        const guess = parseInt(input.value);
+        const messageEl = document.getElementById('gameMessage');
+
+        // Validate input
+        if (isNaN(guess) || guess < 1 || guess > 100) {
+          messageEl.textContent = 'Please enter a number between 1 and 100';
+          messageEl.style.color = '#ff8888';
+          return;
+        }
+
+        // Check if already guessed
+        if (guesses.includes(guess)) {
+          messageEl.textContent = `You already guessed ${guess}!`;
+          messageEl.style.color = '#ffaa88';
+          return;
+        }
+
+        attempts++;
+        guesses.push(guess);
+        updateDisplay();
+
+        // Check guess
+        if (guess === targetNumber) {
+          messageEl.textContent = `🎉 Correct! You found it in ${attempts} ${attempts === 1 ? 'attempt' : 'attempts'}!`;
+          messageEl.style.color = '#88ff88';
+          input.disabled = true;
+
+          // Update best score
+          if (!bestScore || attempts < parseInt(bestScore)) {
+            bestScore = attempts;
+            localStorage.setItem('guessNumberBest', bestScore);
+            document.getElementById('bestScore').textContent = bestScore;
+            messageEl.textContent += ' 🏆 New best score!';
+          }
+        } else if (guess < targetNumber) {
+          messageEl.textContent = '📈 Too low! Try a higher number.';
+          messageEl.style.color = '#88bbff';
+        } else {
+          messageEl.textContent = '📉 Too high! Try a lower number.';
+          messageEl.style.color = '#ffbb88';
+        }
+
+        // Update guess list
+        updateGuessList();
+        input.value = '';
+        input.focus();
+      }
+
+      function updateDisplay() {
+        document.getElementById('attempts').textContent = attempts;
+      }
+
+      function updateGuessList() {
+        const listEl = document.getElementById('guessList');
+        if (guesses.length > 0) {
+          const sortedGuesses = [...guesses].sort((a, b) => b - a);
+          listEl.innerHTML = '<div style="margin-bottom: 0.5rem; font-weight: 600;">Your guesses:</div>' +
+            sortedGuesses.map(g => {
+              let indicator = '';
+              if (g < targetNumber) indicator = '↑';
+              else if (g > targetNumber) indicator = '↓';
+              else indicator = '✓';
+              return `<span style="margin: 0 0.5rem;">${g} ${indicator}</span>`;
+            }).join('');
+        }
+      }
+
+      function resetGame() {
+        document.getElementById('guessInput').disabled = false;
+        initGame();
+      }
+
+      // Handle Enter key
+      document.getElementById('guessInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          makeGuess();
+        }
+      });
+
+      // Start game on load
+      initGame();
+    </script>
+  </body>
+</html>

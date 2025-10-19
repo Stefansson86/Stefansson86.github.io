@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MStefansson - Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="logo">MStefansson</div>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="nav-link">About</a>
+          </li>
+          <li><a href="games.html" class="nav-link">Games</a></li>
+          <li><a href="jokes.html" class="nav-link">Dad Jokes</a></li>
+          <li>
+            <a href="calculator.html" class="nav-link">Run Calc</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="page">
+        <div class="game-container">
+          <div class="card">
+            <a href="games.html">
+              <button style="margin-bottom: 1rem; padding: 0.5rem 1rem">
+                ← Back to Games
+              </button>
+            </a>
+            <h2 class="game-header">✊ Rock Paper Scissors</h2>
+            <p style="text-align: center; color: #b8b8b8; margin-bottom: 2rem">
+              Best of 5 rounds! Choose your weapon wisely.
+            </p>
+
+            <div class="score-board">
+              <div class="score-item">
+                <div class="info-label">You</div>
+                <div class="info-value" id="playerScore">0</div>
+              </div>
+              <div class="score-item">
+                <div class="info-label">Round</div>
+                <div class="info-value"><span id="currentRound">1</span> / 5</div>
+              </div>
+              <div class="score-item">
+                <div class="info-label">Computer</div>
+                <div class="info-value" id="computerScore">0</div>
+              </div>
+            </div>
+
+            <div class="choice-buttons" id="choiceButtons">
+              <button class="choice-btn" onclick="playRound('rock')" title="Rock">
+                ✊
+              </button>
+              <button class="choice-btn" onclick="playRound('paper')" title="Paper">
+                ✋
+              </button>
+              <button class="choice-btn" onclick="playRound('scissors')" title="Scissors">
+                ✌️
+              </button>
+            </div>
+
+            <div class="battle-area" id="battleArea" style="display: none">
+              <div class="player-choice">
+                <div class="info-label">You</div>
+                <div class="choice-display" id="playerChoice"></div>
+              </div>
+              <div class="vs-text">VS</div>
+              <div class="computer-choice">
+                <div class="info-label">Computer</div>
+                <div class="choice-display" id="computerChoice"></div>
+              </div>
+            </div>
+
+            <div class="round-result" id="roundResult"></div>
+
+            <div style="text-align: center; margin-top: 2rem">
+              <button onclick="resetGame()" style="display: none" id="newGameBtn">
+                New Game
+              </button>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; color: #a0a0a0">
+              <div id="gameHistory"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+      const CHOICES = {
+        rock: { emoji: '✊', beats: 'scissors' },
+        paper: { emoji: '✋', beats: 'rock' },
+        scissors: { emoji: '✌️', beats: 'paper' }
+      };
+
+      let playerScore = 0;
+      let computerScore = 0;
+      let currentRound = 1;
+      let gameHistory = [];
+      let totalGamesPlayed = parseInt(localStorage.getItem('rpsGamesPlayed')) || 0;
+      let totalWins = parseInt(localStorage.getItem('rpsWins')) || 0;
+
+      function playRound(playerChoice) {
+        if (currentRound > 5) return;
+
+        // Get computer choice
+        const choices = Object.keys(CHOICES);
+        const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        // Show battle area
+        document.getElementById('battleArea').style.display = 'flex';
+        document.getElementById('playerChoice').textContent = CHOICES[playerChoice].emoji;
+        document.getElementById('computerChoice').textContent = CHOICES[computerChoice].emoji;
+
+        // Determine winner
+        let result;
+        let resultText;
+        if (playerChoice === computerChoice) {
+          result = 'tie';
+          resultText = "It's a tie!";
+        } else if (CHOICES[playerChoice].beats === computerChoice) {
+          result = 'win';
+          playerScore++;
+          resultText = `You win! ${playerChoice} beats ${computerChoice}`;
+        } else {
+          result = 'lose';
+          computerScore++;
+          resultText = `Computer wins! ${computerChoice} beats ${playerChoice}`;
+        }
+
+        // Update display
+        const roundResultEl = document.getElementById('roundResult');
+        roundResultEl.textContent = resultText;
+        roundResultEl.style.color = result === 'win' ? '#88ff88' : result === 'lose' ? '#ff8888' : '#ffaa88';
+
+        document.getElementById('playerScore').textContent = playerScore;
+        document.getElementById('computerScore').textContent = computerScore;
+
+        // Add to history
+        gameHistory.push({
+          round: currentRound,
+          player: playerChoice,
+          computer: computerChoice,
+          result
+        });
+
+        // Check if game is over
+        if (currentRound === 5) {
+          setTimeout(() => {
+            endGame();
+          }, 1500);
+        } else {
+          currentRound++;
+          document.getElementById('currentRound').textContent = currentRound;
+        }
+
+        updateHistory();
+      }
+
+      function endGame() {
+        const roundResultEl = document.getElementById('roundResult');
+        document.getElementById('choiceButtons').style.display = 'none';
+        document.getElementById('newGameBtn').style.display = 'inline-block';
+
+        totalGamesPlayed++;
+        localStorage.setItem('rpsGamesPlayed', totalGamesPlayed);
+
+        if (playerScore > computerScore) {
+          roundResultEl.textContent = `🎉 You won the match ${playerScore}-${computerScore}!`;
+          roundResultEl.style.color = '#88ff88';
+          totalWins++;
+          localStorage.setItem('rpsWins', totalWins);
+        } else if (computerScore > playerScore) {
+          roundResultEl.textContent = `😔 Computer won the match ${computerScore}-${playerScore}`;
+          roundResultEl.style.color = '#ff8888';
+        } else {
+          roundResultEl.textContent = `🤝 Match tied ${playerScore}-${computerScore}`;
+          roundResultEl.style.color = '#ffaa88';
+        }
+
+        // Show stats
+        const winRate = totalGamesPlayed > 0 ? ((totalWins / totalGamesPlayed) * 100).toFixed(1) : 0;
+        roundResultEl.textContent += `\n\nYour stats: ${totalWins}/${totalGamesPlayed} wins (${winRate}%)`;
+      }
+
+      function updateHistory() {
+        const historyEl = document.getElementById('gameHistory');
+        if (gameHistory.length > 0) {
+          historyEl.innerHTML = '<div style="font-weight: 600; margin-bottom: 0.5rem;">Round History:</div>' +
+            gameHistory.map(h => {
+              const icon = h.result === 'win' ? '✓' : h.result === 'lose' ? '✗' : '=';
+              const color = h.result === 'win' ? '#88ff88' : h.result === 'lose' ? '#ff8888' : '#ffaa88';
+              return `<div style="color: ${color};">Round ${h.round}: ${CHOICES[h.player].emoji} vs ${CHOICES[h.computer].emoji} ${icon}</div>`;
+            }).join('');
+        }
+      }
+
+      function resetGame() {
+        playerScore = 0;
+        computerScore = 0;
+        currentRound = 1;
+        gameHistory = [];
+
+        document.getElementById('playerScore').textContent = playerScore;
+        document.getElementById('computerScore').textContent = computerScore;
+        document.getElementById('currentRound').textContent = currentRound;
+        document.getElementById('roundResult').textContent = '';
+        document.getElementById('battleArea').style.display = 'none';
+        document.getElementById('choiceButtons').style.display = 'flex';
+        document.getElementById('newGameBtn').style.display = 'none';
+        document.getElementById('gameHistory').innerHTML = '';
+      }
+
+      // Initialize display
+      document.getElementById('playerScore').textContent = playerScore;
+      document.getElementById('computerScore').textContent = computerScore;
+      document.getElementById('currentRound').textContent = currentRound;
+    </script>
+  </body>
+</html>

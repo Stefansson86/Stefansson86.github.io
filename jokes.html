@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MStefansson - About</title>
+    <title>MStefansson - Dad Jokes</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -25,29 +25,23 @@
 
     <div class="container">
       <div class="page">
-        <div class="hero">
-          <h1>Hi! I'm Mikael</h1>
-          <p>
-            Welcome to my corner of the internet. Explore games, laugh at dad
-            jokes, or calculate your running pace.
-          </p>
-        </div>
-        <div class="card">
-          <h2>About Me</h2>
-          <p>I'm a software developer with a passion for running.</p>
-        </div>
-        <div class="card">
-          <p>
-            <em
-              >"I built this space to share things I enjoy - from quick games to
-              terrible jokes. This site is constantly evolving, so check back
-              often for new additions!"</em
-            >
-          </p>
+        <h1 style="text-align: center; margin-bottom: 2rem">Dad Jokes</h1>
+        <div class="joke-container">
+          <div class="joke-text" id="jokeText">
+            Click the button for a dad joke!
+          </div>
+          <button onclick="getNewJoke()">Tell Me a Joke</button>
         </div>
       </div>
     </div>
 
     <script src="common.js"></script>
+    <script>
+      function getNewJoke() {
+        const jokeText = document.getElementById('jokeText');
+        const randomJoke = getRandomJoke();
+        jokeText.textContent = randomJoke;
+      }
+    </script>
   </body>
 </html>

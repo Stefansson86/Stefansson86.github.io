@@ -1,5 +1,13 @@
-# Claude Code
+# Claude & Agent Customizations
 CLAUDE.md
+.agents/
+.agent/
+skills/
+
+# Build output
+dist/
+dist-ssr/
+*.local
 
 # Logs
 logs

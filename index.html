@@ -1,39 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv" class="h-full">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MStefansson - About</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Mikaels Kokbok – Recept & Matglädje</title>
+    <meta name="description" content="Mikaels personliga kokbok – samlade favoritrecept, enkla vardagsrätter och helglyx." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body>
-    <nav>
-      <div class="nav-container">
-        <div class="logo">MStefansson</div>
-        <ul class="nav-links">
-          <li>
-            <a href="index.html" class="nav-link">About</a>
-          </li>
-          <li><a href="games.html" class="nav-link">Games</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
-      <div class="page">
-        <div class="hero">
-          <h1>Hi! I'm Mikael</h1>
-          <p>
-            Welcome to my corner of the internet. Explore games and have fun!
-          </p>
-        </div>
-        <div class="card">
-          <h2>About Me</h2>
-          <p>I'm a software developer with a passion for running.</p>
-        </div>
-      </div>
-    </div>
-
-    <script src="common.js"></script>
+  <body class="h-full bg-cream-100 text-charcoal-800 font-sans antialiased selection:bg-terracotta-100 selection:text-terracotta-700">
+    <div id="root" class="min-h-full flex flex-col"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

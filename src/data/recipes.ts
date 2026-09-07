@@ -943,5 +943,451 @@ export const initialRecipes: Recipe[] = [
       'Vispa aldrig med elvisp! Vi vill ha en seg och tung kladdkaka, inte en sockerkaka.',
       'Låt den gärna stå i kylen över natten för ultimat fudge-konsistens.'
     ]
+  },
+
+  // --- LÄTT & NYTTIGT (BOWLS, FISK & FRÄSCHT) ---
+  {
+    id: 'sesambakad-laxbowl-ponzu',
+    title: 'Sesambakad Laxbowl med Ponzu, Avokado & Edamame',
+    description: 'En färgsprakande och fräsch bowl med perfekt ugnsbakad sesamlax, krämig avokado, krispiga edamamebönor och en syrlig ponzodressing som binder ihop allt.',
+    source: {
+      name: 'Mikaels Favorit',
+    },
+    servings: 4,
+    prepTimeMinutes: 15,
+    cookTimeMinutes: 12,
+    difficulty: 'Lätt',
+    category: 'Sallader & Bowls',
+    tags: ['Fisk', 'Sallader & Bowls', 'Under 30 min', 'Nyttigt', 'Asiatiskt'],
+    imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🍣',
+    featured: true,
+    ingredientGroups: [
+      {
+        name: 'Sesamlax',
+        ingredients: [
+          { name: 'Laxfilé (i portionsbitar)', amount: 600, unit: 'g' },
+          { name: 'Japansk soja', amount: 2, unit: 'msk' },
+          { name: 'Sesamolja', amount: 1, unit: 'tsk' },
+          { name: 'Sesamfrön (gärna svarta & vita)', amount: 2, unit: 'msk' },
+          { name: 'Flingsalt & nymalen svartpeppar', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Bas & Grönt',
+        ingredients: [
+          { name: 'Sushiris, quinoa eller matvete', amount: 3, unit: 'dl', notes: 'okokt mått' },
+          { name: 'Avokado', amount: 2, unit: 'st', notes: 'tärnade' },
+          { name: 'Edamamebönor (tinade)', amount: 250, unit: 'g' },
+          { name: 'Gurka', amount: 0.5, unit: 'st', notes: 'halverad och tunt skivad' },
+          { name: 'Mango (färsk eller tinad fryst)', amount: 200, unit: 'g', notes: 'tärnad' },
+          { name: 'Salladslök', amount: 3, unit: 'st', notes: 'finslantad' },
+        ]
+      },
+      {
+        name: 'Ponzodressing & Topping',
+        ingredients: [
+          { name: 'Japansk soja', amount: 3, unit: 'msk' },
+          { name: 'Färskpressad limejuice', amount: 2, unit: 'msk' },
+          { name: 'Ingefära', amount: 1, unit: 'msk', notes: 'finriven' },
+          { name: 'Honung eller lönnsirap', amount: 1, unit: 'tsk' },
+          { name: 'Sesamolja', amount: 1, unit: 'tsk' },
+          { name: 'Srirachamajonnäs', notes: 'att ringla över' },
+          { name: 'Färsk koriander', notes: 'valfritt' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Koka basen & sätt på ugnen',
+        text: 'Sätt ugnen på 200°C. Koka riset, quinoan eller matvetet enligt anvisning på förpackningen.'
+      },
+      {
+        title: 'Skjuts in laxen',
+        text: 'Lägg laxbitarna i en ugnsform. Pensla med soja och sesamolja, strö över rikligt med sesamfrön och lite flingsalt. Baka mitt i ugnen i 10–12 minuter tills laxen är saftig och precis genomstekt.'
+      },
+      {
+        title: 'Blanda snabbdressingen',
+        text: 'Vispa ihop soja, limejuice, finriven ingefära, honung och sesamolja i en liten skål.'
+      },
+      {
+        title: 'Preppa krispet',
+        text: 'Tärna avokado och mango, skiva gurka och slanta salladslöken.'
+      },
+      {
+        title: 'Bygg bowlen!',
+        text: 'Fördela basen i djupa skålar. Arrangera grönsaker, mango och edamame snyggt runt om och toppa med en bit sesamlax. Ringla över ponzodressingen och lite srirachamajjo.'
+      }
+    ],
+    chefTips: [
+      'Har du extra ont om tid? Byt ut ugnsbakad lax mot färdig varmrökt lax eller salmalax i skivor!',
+      'Gillar du hetta? Toppa med lite tunt skivad röd chili eller extra sriracha.'
+    ]
+  },
+  {
+    id: 'grekisk-kycklingbowl-tzatziki',
+    title: 'Grekisk Lemon & Herb Kycklingbowl med Tzatziki',
+    description: 'Saftig kyckling stekt med citron, vitlök och oregano som serveras på en bas av matvete, krispig tomatsallad, kalamataoliver och en svalkande vitlökstzatziki.',
+    source: {
+      name: 'Mikaels Favorit',
+    },
+    servings: 4,
+    prepTimeMinutes: 15,
+    cookTimeMinutes: 15,
+    difficulty: 'Lätt',
+    category: 'Kyckling',
+    tags: ['Kyckling', 'Grekiskt', 'Nyttigt', 'Snabbt', 'Sallader & Bowls'],
+    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🍗',
+    featured: false,
+    ingredientGroups: [
+      {
+        name: 'Citron- & örtkyckling',
+        ingredients: [
+          { name: 'Kycklingbröstfilé eller lårfilé', amount: 600, unit: 'g', notes: 'strimlad' },
+          { name: 'Olivolja', amount: 2, unit: 'msk' },
+          { name: 'Torkad oregano', amount: 1.5, unit: 'msk' },
+          { name: 'Vitlöksklyftor', amount: 2, unit: 'st', notes: 'pressade' },
+          { name: 'Citron (zest & saft)', amount: 1, unit: 'st' },
+          { name: 'Salt & svartpeppar', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Hemgjord Tzatziki',
+        ingredients: [
+          { name: 'Grekisk yoghurt (10%)', amount: 2.5, unit: 'dl' },
+          { name: 'Gurka', amount: 0.5, unit: 'st', notes: 'grovriven och urkramad' },
+          { name: 'Vitlöksklyfta', amount: 1, unit: 'st', notes: 'finriven' },
+          { name: 'Olivolja', amount: 1, unit: 'msk' },
+          { name: 'Flingsalt & svartpeppar', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Salladsbas & Tillbehör',
+        ingredients: [
+          { name: 'Matvete, bulgur eller quinoa', amount: 3, unit: 'dl', notes: 'kokt enligt paket' },
+          { name: 'Körsbärstomater', amount: 250, unit: 'g', notes: 'halverade' },
+          { name: 'Gurka', amount: 0.5, unit: 'st', notes: 'tärnad' },
+          { name: 'Rödlök', amount: 0.5, unit: 'st', notes: 'tunt skivad' },
+          { name: 'Kalamataoliver', amount: 1, unit: 'dl' },
+          { name: 'Fetaost', amount: 150, unit: 'g', notes: 'smulad' },
+          { name: 'Färsk persilja eller mynta', notes: 'grovhackad' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Koka basen',
+        text: 'Koka matvete eller bulgur i saltat vatten. Låt svalna en aning så det är ljummet vid servering.'
+      },
+      {
+        title: 'Rör ihop tzatzikin',
+        text: 'Riv gurkan grovt, strö på lite salt och krama ur all vätska ordentligt i handen. Blanda med grekisk yoghurt, riven vitlök, olivolja, salt och peppar. Låt dra i kylen.'
+      },
+      {
+        title: 'Stek kycklingen saftig',
+        text: 'Blanda kycklingstrimlorna med olivolja, oregano, vitlök, citronzest, citronsaft, salt och peppar. Hetta upp en stekpanna och stek kycklingen på medelhög värme i 6–8 minuter tills den fått gyllene färg och är genomstekt.'
+      },
+      {
+        title: 'Blanda tomatsalladen',
+        text: 'Vänd ihop halverade tomater, tärnad gurka, skivad rödlök och oliver med en skvätt olivolja och lite salt.'
+      },
+      {
+        title: 'Servera!',
+        text: 'Grunda djupa tallrikar med matvete. Lägg på kycklingen och tomatsalladen, klicka över generöst med tzatziki, smula över fetaost och toppa med färska örter.'
+      }
+    ],
+    chefTips: [
+      'Glöm inte att krama ur gurkvattnet till tzatzikin riktigt hårt – då blir såsen tjock och krämig istället för vattnig!',
+      'Gör dubbel sats kyckling och tzatziki så har du morgondagens lunchlåda säkrad.'
+    ]
+  },
+  {
+    id: 'vietnamesisk-kycklingsallad-goi-ga',
+    title: 'Vietnamesisk Krispig Kycklingsallad (Goi Ga)',
+    description: 'Superlätt och krispig sallad med strimlad kyckling, fint hyvlad spetskål, massor av färska örter, hackade jordnötter och en pigg lime- och chilidressing.',
+    source: {
+      name: 'Mikaels Favorit',
+    },
+    servings: 4,
+    prepTimeMinutes: 20,
+    cookTimeMinutes: 10,
+    difficulty: 'Lätt',
+    category: 'Sallader & Bowls',
+    tags: ['Kyckling', 'Asiatiskt', 'Krispigt', 'Under 30 min', 'Nyttigt'],
+    imageUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🥗',
+    featured: false,
+    ingredientGroups: [
+      {
+        name: 'Kyckling',
+        ingredients: [
+          { name: 'Kycklingbröstfilé (eller färdiggrillad kyckling)', amount: 500, unit: 'g' },
+          { name: 'Olja till stekning', amount: 1, unit: 'msk' },
+          { name: 'Salt & peppar', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Sallad & Krisp',
+        ingredients: [
+          { name: 'Spetskål eller vitkål', amount: 0.5, unit: 'st', notes: 'mycket fint strimlad' },
+          { name: 'Morötter', amount: 2, unit: 'st', notes: 'skurna i tunna tändstickor (julienne)' },
+          { name: 'Gurka', amount: 0.5, unit: 'st', notes: 'strimlad' },
+          { name: 'Rödlök', amount: 0.5, unit: 'st', notes: 'tunt skivad' },
+          { name: 'Färsk koriander', amount: 1, unit: 'kruka', notes: 'grovhackad' },
+          { name: 'Färsk mynta', amount: 0.5, unit: 'kruka', notes: 'grovhackad' },
+          { name: 'Rostade saltade jordnötter', amount: 1, unit: 'dl', notes: 'grovhackade' },
+          { name: 'Rostad lök', amount: 0.5, unit: 'dl', notes: 'valfritt för extra krisp' },
+        ]
+      },
+      {
+        name: 'Vietnamesisk Nuoc Cham Dressing',
+        ingredients: [
+          { name: 'Färskpressad limejuice', amount: 3, unit: 'msk' },
+          { name: 'Fisksås', amount: 2.5, unit: 'msk' },
+          { name: 'Rörsocker eller honung', amount: 1.5, unit: 'msk' },
+          { name: 'Vatten', amount: 2, unit: 'msk' },
+          { name: 'Vitlöksklyfta', amount: 1, unit: 'st', notes: 'finhackad' },
+          { name: 'Röd chili', amount: 1, unit: 'st', notes: 'finhackad' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Fixa kycklingen',
+        text: 'Stek kycklingfiléerna i lite olja tills de är genomstekta och fått färg (eller använd färdiggrillad kyckling). Låt vila i några minuter och strimla eller dra sedan isär köttet med två gafflar.'
+      },
+      {
+        title: 'Vispa ihop dressingen',
+        text: 'Rör ihop limejuice, fisksås, socker/honung och vatten tills sockret löst sig helt. Rör ner finhackad vitlök och chili. Smaka av – balansen mellan syra, sälta och sötma ska vara magisk!'
+      },
+      {
+        title: 'Strimla grönsakerna',
+        text: 'Hyvla spetskålen så tunt du bara kan med mandolin eller osthyvel. Strimla morot och gurka, skiva rödlöken och grovhacka örterna.'
+      },
+      {
+        title: 'Blanda och servera',
+        text: 'Lägg kål, morot, gurka, lök, örter och den strimlade kycklingen i en stor skål. Häll över dressingen och vänd runt ordentligt så allt täcks. Toppa med rikligt med hackade jordnötter och rostad lök.'
+      }
+    ],
+    chefTips: [
+      'Vill du ha salladen matigare? Koka 100g risnudlar eller glasnudlar och vänd ner tillsammans med kålen.',
+      'Massera gärna den strimlade kålen lätt med händerna innan du blandar i dressingen så blir den mjukare och suger åt sig smakerna ännu bättre.'
+    ]
+  },
+  {
+    id: 'ugnslax-pa-plat-medelhavsgronsaker',
+    title: 'Lax på Plåt med Medelhavsgrönsaker & Fetaost',
+    description: 'Vardagsmiddagen som sköter sig själv i ugnen! Laxfiléer bakade tillsammans med körsbärstomater, zucchini, rödlök och sparris, toppat med smulad fetaost.',
+    source: {
+      name: 'Mikaels Favorit',
+    },
+    servings: 4,
+    prepTimeMinutes: 10,
+    cookTimeMinutes: 15,
+    difficulty: 'Lätt',
+    category: 'Fisk & Skaldjur',
+    tags: ['Fisk', 'Plåtmat', 'Under 30 min', 'Nyttigt', 'Enkelt'],
+    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🐟',
+    featured: false,
+    ingredientGroups: [
+      {
+        name: 'Plåten',
+        ingredients: [
+          { name: 'Laxfiléer', amount: 4, unit: 'st', notes: 'ca 500-600g' },
+          { name: 'Zucchini', amount: 1, unit: 'st', notes: 'halverad och skivad i halvmånar' },
+          { name: 'Körsbärstomater', amount: 250, unit: 'g', notes: 'hela eller halverade' },
+          { name: 'Grön sparris eller haricots verts', amount: 200, unit: 'g', notes: 'ansad' },
+          { name: 'Rödlök', amount: 1, unit: 'st', notes: 'skuren i klyftor' },
+          { name: 'Kalamataoliver', amount: 1, unit: 'dl' },
+          { name: 'Fetaost', amount: 150, unit: 'g', notes: 'smulad över' },
+        ]
+      },
+      {
+        name: 'Marinad & Smaksättning',
+        ingredients: [
+          { name: 'Olivolja av bra kvalitet', amount: 3, unit: 'msk' },
+          { name: 'Citron', amount: 1, unit: 'st', notes: 'skivad i tunna skivor + lite saft' },
+          { name: 'Torkad oregano eller timjan', amount: 1, unit: 'msk' },
+          { name: 'Vitlöksklyftor', amount: 2, unit: 'st', notes: 'finrivna' },
+          { name: 'Flingsalt & nymalen svartpeppar', notes: 'efter smak' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Ugnen på & plåten fram',
+        text: 'Sätt ugnen på 200°C varmluft. Klä en plåt med bakplåtspapper.'
+      },
+      {
+        title: 'Skär grönsakerna',
+        text: 'Skiva zucchini, klyfta rödlöken och ansa sparrisen. Sprid ut grönsakerna och körsbärstomaterna jämnt över plåten.'
+      },
+      {
+        title: 'Placera laxen & krydda',
+        text: 'Gör plats för laxfiléerna mellan grönsakerna. Ringla olivolja över allt. Strö över riven vitlök, oregano, flingsalt och nymalen svartpeppar. Lägg citronskivor på laxbitarna.'
+      },
+      {
+        title: 'Baka i ugnen',
+        text: 'Kör in plåten i ugnen i 10 minuter. Ta ut, smula över fetaosten och oliverna, och baka i ytterligare 4–5 minuter tills laxen är saftig och osten fått lite värme.'
+      },
+      {
+        title: 'Servera!',
+        text: 'Ställ fram hela plåten mitt på bordet. Servera direkt som den är eller tillsammans med en klick tzatziki, kokt potatis eller en bit surdegsbröd.'
+      }
+    ],
+    chefTips: [
+      'Passa tiden i ugnen så laxen behåller sin fina kärna och inte blir torr – 12–15 minuter brukar vara helt optimalt!',
+      'Gillar du potatis? Koka små delikatesspotatisar i förväg och krossa dem lätt på plåten tillsammans med grönsakerna.'
+    ]
+  },
+  {
+    id: 'spicy-raktacos-mangosalsa',
+    title: 'Spicy Räktacos med Mangosalsa & Avokadokräm',
+    description: 'Fräscha tacos med heta chilimarinerade räkor, söt mangosalsa med koriander och en krämig lime- och avokadoröra. Perfekt fredagslyx på bara 15 minuter.',
+    source: {
+      name: 'Mikaels Favorit',
+    },
+    servings: 4,
+    prepTimeMinutes: 15,
+    cookTimeMinutes: 5,
+    difficulty: 'Lätt',
+    category: 'Fisk & Skaldjur',
+    tags: ['Skaldjur', 'Tacos', 'Snabbt', 'Under 30 min', 'Helglyx'],
+    imageUrl: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🦐',
+    featured: false,
+    ingredientGroups: [
+      {
+        name: 'Spicy Räkor',
+        ingredients: [
+          { name: 'Handskalade räkor (eller råa scampi)', amount: 500, unit: 'g' },
+          { name: 'Olivolja', amount: 1, unit: 'msk' },
+          { name: 'Spiskummin', amount: 1, unit: 'tsk' },
+          { name: 'Rökt paprikapulver', amount: 1, unit: 'tsk' },
+          { name: 'Chiliflakes eller cayennepeppar', amount: 0.5, unit: 'tsk' },
+          { name: 'Vitlöksklyfta', amount: 1, unit: 'st', notes: 'finriven' },
+          { name: 'Flingsalt', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Krämig Avokadoröra',
+        ingredients: [
+          { name: 'Mogna avokador', amount: 2, unit: 'st' },
+          { name: 'Crème fraîche eller grekisk yoghurt', amount: 2, unit: 'msk' },
+          { name: 'Färskpressad limejuice', amount: 1, unit: 'msk' },
+          { name: 'Salt & peppar', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Mangosalsa & Montering',
+        ingredients: [
+          { name: 'Mango (färsk eller tinad)', amount: 250, unit: 'g', notes: 'fint tärnad' },
+          { name: 'Rödlök', amount: 0.5, unit: 'st', notes: 'finhackad' },
+          { name: 'Färsk koriander', amount: 0.5, unit: 'kruka', notes: 'hackad' },
+          { name: 'Röd chili (t.ex. jalapeño eller spansk)', amount: 0.5, unit: 'st', notes: 'urkärnad & finhackad' },
+          { name: 'Små majs- eller vetetortillas', amount: 8, unit: 'st' },
+          { name: 'Fint strimlad rödkål eller sallad', amount: 2, unit: 'dl' },
+          { name: 'Limeklyftor', amount: 4, unit: 'st' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Blanda mangosalsan',
+        text: 'Vänd ihop tärnad mango, finhackad rödlök, chili och koriander i en skål. Pressa över lite limesaft och en nypa salt.'
+      },
+      {
+        title: 'Mosa avokadokrämen',
+        text: 'Mosa avokadon med en gaffel tillsammans med crème fraîche/yoghurt, limejuice och salt till en slät kräm.'
+      },
+      {
+        title: 'Fräs räkorna snabbt',
+        text: 'Hetta upp olivolja i en panna. Vänd ner spiskummin, paprikapulver, chili och riven vitlök i 30 sekunder. Lägg i räkorna och stek snabbt på hög värme i 1–2 minuter (de ska bara bli varma och ta smak, inte bli sega!).'
+      },
+      {
+        title: 'Värm tortillabröden',
+        text: 'Värm tortillabröden i en torr het stekpanna i några sekunder per sida så de blir mjuka och puffiga.'
+      },
+      {
+        title: 'Montera tacos!',
+        text: 'Bred en klick avokadokräm i botten på varje bröd. Toppa med strimlad kål, de kryddiga räkorna och den söta mangosalsan. Pressa över färsk lime och njut direkt!'
+      }
+    ],
+    chefTips: [
+      'Använder du färska handskalade räkor behöver de bara vändas runt i de varma kryddorna i 30–60 sekunder så behåller de sin fina spänst.',
+      'Värm alltid tortillabröden i torr panna – det gör hela skillnaden för konsistensen och smaken.'
+    ]
+  },
+  {
+    id: 'kramig-rod-linscurry-spenat',
+    title: 'Krämig Röd Linscurry med Ingefära & Spenat',
+    description: 'En värmande, mättande och näringsrik vardagscurry med röda linser, kokosmjölk, riven ingefära och färsk spenat. Klart på 20 minuter och suverän i matlådan.',
+    source: {
+      name: 'Mikaels Favorit',
+    },
+    servings: 4,
+    prepTimeMinutes: 5,
+    cookTimeMinutes: 15,
+    difficulty: 'Lätt',
+    category: 'Vegetariskt',
+    tags: ['Vegetariskt', 'Veganskt', 'Gryta', 'Matlåda', 'Under 30 min'],
+    imageUrl: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🍲',
+    featured: false,
+    ingredientGroups: [
+      {
+        name: 'Currybasen',
+        ingredients: [
+          { name: 'Röda torkade linser (sköljda)', amount: 3, unit: 'dl' },
+          { name: 'Kokosmjölk (fyllig)', amount: 400, unit: 'ml', notes: '1 burk' },
+          { name: 'Krossade tomater (gärna finkrossade)', amount: 400, unit: 'g', notes: '1 burk' },
+          { name: 'Grönsaksbuljong (vatten + tärning)', amount: 4, unit: 'dl' },
+          { name: 'Gul lök', amount: 1, unit: 'st', notes: 'finhackad' },
+          { name: 'Vitlöksklyftor', amount: 3, unit: 'st', notes: 'finhackade' },
+          { name: 'Färsk ingefära', amount: 2, unit: 'msk', notes: 'finriven' },
+          { name: 'Röd currypasta eller garam masala', amount: 2, unit: 'msk' },
+          { name: 'Gurkmeja & spiskummin', amount: 1, unit: 'tsk', notes: 'vardera' },
+          { name: 'Olja till stekning', amount: 1.5, unit: 'msk' },
+        ]
+      },
+      {
+        name: 'Avslutning & Tillbehör',
+        ingredients: [
+          { name: 'Färsk babyspenat', amount: 100, unit: 'g' },
+          { name: 'Färskpressad limejuice', amount: 1, unit: 'msk' },
+          { name: 'Salt & peppar', notes: 'efter smak' },
+          { name: 'Basmatiris eller naanbröd', notes: 'till servering' },
+          { name: 'Färsk koriander & matlagningsyoghurt', notes: 'valfritt tillbehör' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Fräs aromaterna',
+        text: 'Hetta upp olja i en gryta eller djup kastrull. Fräs lök, vitlök, riven ingefära, currypasta, gurkmeja och spiskummin på medelvärme i 2–3 minuter tills det doftar fantastiskt i hela köket.'
+      },
+      {
+        title: 'I med vätska & linser',
+        text: 'Häll i de sköljda röda linserna, kokosmjölken, krossade tomaterna och grönsaksbuljongen. Rör om ordentligt.'
+      },
+      {
+        title: 'Låt puttra',
+        text: 'Låt grytan koka upp och sänk sedan värmen. Låt sjuda under lock i 12–15 minuter tills linserna är mjuka och grytan blivit krämig och fyllig. Rör om då och då så det inte bränner i botten.'
+      },
+      {
+        title: 'Vänd ner spenat & smaka av',
+        text: 'Ta av från värmen. Vänd ner färsk babyspenat och låt den mjukna i såsen. Smaka av med färskpressad limejuice och salt.'
+      },
+      {
+        title: 'Servera!',
+        text: 'Servera i djupa skålar med fluffigt ris eller varmt naanbröd. Toppa med färsk koriander och en klick yoghurt om du vill.'
+      }
+    ],
+    chefTips: [
+      'Röda linser kokar sönder lite och gör grytan naturligt tjock och krämig utan att du behöver reda den.',
+      'Perfekt rätt för matlådor – smakar nästan ännu godare dagen efter när kryddorna fått gosa ihop sig!'
+    ]
   }
 ];

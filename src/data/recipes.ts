@@ -1389,5 +1389,79 @@ export const initialRecipes: Recipe[] = [
       'Röda linser kokar sönder lite och gör grytan naturligt tjock och krämig utan att du behöver reda den.',
       'Perfekt rätt för matlådor – smakar nästan ännu godare dagen efter när kryddorna fått gosa ihop sig!'
     ]
+  },
+  {
+    id: 'italiensk-ostsoppa-pasta-skinka',
+    title: 'Italiensk Ostsoppa med Pasta & Skinka',
+    description: 'En riktig nostalgitripp och ultimat comfort food! Krämig ostsoppa med makaroner, strimlad rökt skinka och en mustig toscansk örtblandning som värmer gott.',
+    source: {
+      name: 'Skolklassiker med italiensk touch',
+    },
+    servings: 4,
+    prepTimeMinutes: 10,
+    cookTimeMinutes: 20,
+    difficulty: 'Lätt',
+    category: 'Vardag',
+    tags: ['Soppa', 'Pasta', 'Vardagsfavorit', 'Barnfavorit', 'Comfort food', 'Under 30 min', 'Snabbt'],
+    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1200&q=80',
+    emoji: '🥣',
+    featured: false,
+    ingredientGroups: [
+      {
+        name: 'Soppbas & Fyllning',
+        ingredients: [
+          { name: 'Okokta makaroner (eller snäckor/gobbetti)', amount: 180, unit: 'g' },
+          { name: 'Strimlad rökt skinka', amount: 100, unit: 'g' },
+          { name: 'Ostcrème eller mjukost (25–30 % fett)', amount: 150, unit: 'g', notes: 'ca 1,5 dl' },
+          { name: 'Mellanmjölk', amount: 6, unit: 'dl' },
+          { name: 'Vatten', amount: 2.5, unit: 'dl' },
+          { name: 'Hönsbuljongpulver (eller 1 tärning)', amount: 1, unit: 'tsk' },
+          { name: 'Rapsolja till stekning', amount: 2, unit: 'tsk' },
+          { name: 'Salt & nymalen svartpeppar', notes: 'efter smak' },
+        ]
+      },
+      {
+        name: 'Toscansk kryddblandning',
+        ingredients: [
+          { name: 'Torkad rosmarin', amount: 1, unit: 'tsk' },
+          { name: 'Torkad timjan', amount: 1, unit: 'tsk' },
+          { name: 'Paprikapulver', amount: 1, unit: 'tsk' },
+          { name: 'Vitlökspulver', amount: 1, unit: 'tsk' },
+          { name: 'Torkad oregano', amount: 1, unit: 'tsk' },
+          { name: 'Torkad basilika', amount: 1, unit: 'tsk' },
+        ]
+      }
+    ],
+    steps: [
+      {
+        title: 'Koka pastan',
+        text: 'Koka makaronerna al dente i rikligt saltat vatten enligt anvisning på paketet. Häll av i durkslag och ställ åt sidan.'
+      },
+      {
+        title: 'Blanda kryddorna',
+        text: 'Mät upp torkad rosmarin, timjan, paprikapulver, vitlökspulver, oregano och basilika i en liten skål och rör ihop.'
+      },
+      {
+        title: 'Bryn skinkan lätt',
+        text: 'Hetta upp rapsolja i en rymlig kastrull på medelvärme och fräs den strimlade skinkan lätt i nån minut så smakerna vaknar.'
+      },
+      {
+        title: 'I med vätska, ost & kryddor',
+        text: 'Slå på mjölk, vatten, hönsbuljong och klicka i ostcrèmen/mjukosten. Tillsätt den toscanska kryddblandningen och en nypa svartpeppar. Rör runt ordentligt med en visp så osten smälter ut fint.'
+      },
+      {
+        title: 'Låt sjuda',
+        text: 'Låt soppan koka upp under omrörning och sänk sedan värmen. Låt sjuda försiktigt på låg värme i 5–10 minuter så smakerna hinner sätta sig ordentligt. Smaka av med lite salt om det behövs (skinkan och buljongen ger redan sälta).'
+      },
+      {
+        title: 'Vänd ner pastan & servera!',
+        text: 'Vänd ner de kokta makaronerna precis före servering så de blir genomvarma. Häll upp i djupa skålar och servera genast, gärna med ett gott surdegsbröd och lite färska örter på toppen.'
+      }
+    ],
+    chefTips: [
+      'Förvara gärna makaronerna och soppan separat om du gör matlådor! Annars suger pastan åt sig all soppa över natten.',
+      'Vill du ha ännu mer fyllighet och lyx? Byt ut 1 dl av mjölken mot vispgrädde eller riv i lite extra parmesan precis vid servering.',
+      'Föredrar du en mildare smak för de allra minsta? Börja med halva mängden av örtblandningen och smaka av.'
+    ]
   }
 ];

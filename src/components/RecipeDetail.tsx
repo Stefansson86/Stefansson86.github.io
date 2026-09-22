@@ -8,7 +8,8 @@ import {
   Share2,
   Printer,
   Lightbulb,
-  Flame
+  Flame,
+  Users
 } from 'lucide-react';
 import { Recipe } from '../types/recipe';
 
@@ -112,33 +113,13 @@ export const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe, onBack }) =>
       {/* Header Banner & Title Card */}
       <div className="bg-white rounded-3xl p-6 sm:p-10 border border-cream-300 shadow-playful space-y-6">
         <div className="space-y-4">
-          <div className="flex items-center gap-2 flex-wrap justify-between">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-bold px-3.5 py-1 rounded-full bg-terracotta-50 text-terracotta-800 border border-terracotta-200">
-                {recipe.category}
-              </span>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-cream-200 text-charcoal-800 border border-cream-300">
-                {recipe.difficulty}
-              </span>
-            </div>
-
-            {recipe.source && (
-              <div className="text-xs text-charcoal-800/60 font-medium">
-                Källa:{' '}
-                {recipe.source.url ? (
-                  <a
-                    href={recipe.source.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline text-terracotta-600 hover:text-terracotta-700"
-                  >
-                    {recipe.source.name}
-                  </a>
-                ) : (
-                  <span>{recipe.source.name}</span>
-                )}
-              </div>
-            )}
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs font-bold px-3.5 py-1 rounded-full bg-terracotta-50 text-terracotta-800 border border-terracotta-200">
+              {recipe.category}
+            </span>
+            <span className="text-xs font-bold px-3 py-1 rounded-full bg-cream-200 text-charcoal-800 border border-cream-300">
+              {recipe.difficulty}
+            </span>
           </div>
 
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal-800 tracking-tight leading-tight">
@@ -195,10 +176,11 @@ export const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe, onBack }) =>
 
             <div className="bg-cream-100 p-3 rounded-2xl border border-cream-300/60">
               <span className="text-[11px] font-semibold text-charcoal-800/60 uppercase tracking-wider block mb-0.5">
-                Källa
+                Portioner
               </span>
-              <div className="font-semibold text-xs text-charcoal-800 truncate">
-                {recipe.source?.name || 'Mikael'}
+              <div className="flex items-center gap-1.5 font-bold text-charcoal-800">
+                <Users className="w-4 h-4 text-terracotta-500" />
+                <span>{recipe.servings} port</span>
               </div>
             </div>
           </div>

@@ -1391,11 +1391,11 @@ export const initialRecipes: Recipe[] = [
     ]
   },
   {
-    id: 'italiensk-ostsoppa-pasta-skinka',
-    title: 'Italiensk Ostsoppa med Pasta & Skinka',
+    id: 'lykkes-italienska-ostsoppa',
+    title: 'Lykkes Italienska Ostsoppa med Pasta & Skinka',
     description: 'En riktig nostalgitripp och ultimat comfort food! Krämig ostsoppa med makaroner, strimlad rökt skinka och en mustig toscansk örtblandning som värmer gott.',
     source: {
-      name: 'Skolklassiker med italiensk touch',
+      name: 'Lykkes Favorit',
     },
     servings: 4,
     prepTimeMinutes: 10,
